@@ -5,6 +5,7 @@ import time
 
 # DEPENDENCIES (Local)
 # ----------------------------------------------------------------------------------------------------
+import utils.ui as ui
 import utils.const as const
 import processing.reader as reader
 from model.base import BaseModel
@@ -32,19 +33,13 @@ def evaluate():
 
     # 4. Evaluate predictor
     print('(EVALUATOR) Evaluating predictor...')
-    accuracy, results, string_results, matrix = model.evaluate(X_test, Y_test)
+    report, matrix = model.evaluate(X_test, Y_test)
 
     # 5. Show results
     print('(EVALUATOR) Results:')
-    print()
-    print("Model - ", model.model)
-    print("-> F1 Score - ", "{0:.2f}".format(results['f1_score']))
-    print("-> Precision - ", "{0:.2f}".format(results['precision']))
-    print("-> Recall - ", "{0:.2f}".format(results['recall']))
-    print("-> Accuracy - ", "{0:.2f}".format(accuracy))
-    print()
-    print("Confusion Matrix:")
-    print(matrix)
+    ui.print_model(model)
+    ui.print_evaluation(report, matrix)
+    
 
 if __name__ == "__main__":
     evaluate()

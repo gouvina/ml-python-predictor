@@ -2,9 +2,7 @@
 # ----------------------------------------------------------------------------------------------------
 import warnings
 warnings.simplefilter("ignore", UserWarning)
-import time
 import pickle
-import pandas as pd
 import numpy as np
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
@@ -14,7 +12,7 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 
 # DEPENDENCIES (Local)
 # ----------------------------------------------------------------------------------------------------
-import utils.const as const
+from utils.const import BaseModels, BaseParams
 
 # MAIN CLASS
 # ----------------------------------------------------------------------------------------------------
@@ -29,11 +27,11 @@ class BaseModel():
         self.classifier = pickle.load(open(path, 'rb'))
 
     # Constructor
-    def __init__(self, model='mlp_classifier', params={}):
+    def __init__(self, model=BaseModels.MLP, params=BaseParams.MLP[0]):
 
         # Generic configuration
-        self.model = params['model'] if 'model' in params else model
-        self.params = params['params'] if 'params' in params else None
+        self.model = model
+        self.params = params
 
         # Interfaces
         self.predictor = None
@@ -41,27 +39,15 @@ class BaseModel():
     # Train predictor for dataset X and tags Y
     def train(self, X, Y):
 
-        # If params exist, use them to train predictor
-        if self.params is not None:
-            if self.model == 'svm':
-                self.predictor = SVC(**self.params)
-            elif self.model == 'tree':
-                self.predictor = DecisionTreeClassifier(**self.params)
-            elif self.model == 'knn':
-                self.predictor = KNeighborsClassifier(**self.params)
-            elif self.model == 'mlp_classifier':
-                self.predictor = MLPClassifier(**self.params)
-
-        # If params don't exist, use generic params to train predictor
-        else:
-            if self.model == 'svm':
-                self.predictor = SVC(kernel='linear', C=10)
-            elif self.model == 'tree':
-                self.predictor = DecisionTreeClassifier(criterion='entropy', max_depth=8)
-            elif self.model == 'knn':
-                self.predictor = KNeighborsClassifier(3)
-            elif self.model == 'mlp_classifier':
-                self.predictor = MLPClassifier(hidden_layer_sizes=(100,), activation='relu', alpha=0.05, solver='adam',  max_iter=2000)
+        # Create model's instance based on params
+        if self.model == BaseModels.TREE:
+            self.predictor = DecisionTreeClassifier(**self.params)
+        elif self.model == BaseModels.KNN:
+            self.predictor = KNeighborsClassifier(**self.params)
+        elif self.model == BaseModels.SVM:
+            self.predictor = SVC(**self.params)
+        elif self.model == BaseModels.MLP:
+            self.predictor = MLPClassifier(**self.params)
 
         # Train using dataset X and tags Y
         self.predictor.fit(X, Y)
@@ -79,12 +65,13 @@ class BaseModel():
         # Get metrics
         accuracy = accuracy_score(Y, prediction)
         results = classification_report(Y, prediction, output_dict=True)
-        report_string = classification_report(Y, prediction)
         matrix = confusion_matrix(Y, prediction)
 
+        # Fill report
         report = {
+            'accuracy': accuracy,
             'f1_score': results['macro avg']['f1-score'],
             'precision': results['macro avg']['precision'],
             'recall': results['macro avg']['recall'],
         }
-        return accuracy, report, report_string, matrix
+        return report, matrix
