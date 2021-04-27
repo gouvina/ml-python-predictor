@@ -13,6 +13,11 @@ DATA_FOLDER = 'data/'
 IRIS_DATASET = 'iris.csv'
 IRIS_PREDICTOR = 'iris.pkl'
 
+# Model classes
+class Models(Enum):
+    BASE = 1
+    NEURAL = 2
+
 # Base model types
 class BaseModels(Enum):
     TREE = 1
@@ -257,3 +262,7 @@ class BaseParams():
             'learning_rate': 'adaptive'
         },
     ]
+
+# Neural model types
+class NeuralModels(Enum):
+    MLP = 1
