@@ -38,7 +38,8 @@ def evaluate(dataset, model_class, model_type, model_params):
     # 5. Show results
     print('(EVALUATOR) Results:')
     ui.print_model(model_class, model)
-    ui.print_evaluation(report, matrix)
+    ui.print_evaluation(report)
+    ui.print_matrix(matrix)
 
 # Search parameters' space and evaluate best for a predictor
 def search(dataset, model_class):
@@ -89,7 +90,7 @@ def search(dataset, model_class):
             print()
             print('(EVALUATOR) Results:')
             ui.print_model(Models.BASE, best_model)
-            ui.print_evaluation(best_report, None)
+            ui.print_evaluation(best_report)
             
         
 if __name__ == "__main__":

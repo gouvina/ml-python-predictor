@@ -27,12 +27,14 @@ def print_model(model_class, model):
         print("-> " + param + ": " + str(model.params[param]))
 
 # Print predictor's evaluation
-def print_evaluation(report, matrix):
+def print_evaluation(report):
     print("Metrics:")
     print("-> F1 Score - ", "{0:.2f}".format(report['f1_score']))
     print("-> Precision - ", "{0:.2f}".format(report['precision']))
     print("-> Recall - ", "{0:.2f}".format(report['recall']))
     print("-> Accuracy - ", "{0:.2f}".format(report['accuracy']))
-    if matrix != None:
-        print("Confusion Matrix:")
-        print(matrix)
+
+# Print predictor evaluation's confusion matrix
+def print_matrix(matrix):
+    print("Confusion Matrix:")
+    print(matrix)
