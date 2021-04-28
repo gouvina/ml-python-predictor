@@ -20,15 +20,14 @@ class Models(Enum):
 
 # Base model types
 class BaseModels(Enum):
-    TREE = 1
-    NB = 2    
-    KNN = 3
-    SVM = 4
-    MLP = 5
+    TREE = '(BT) Binary Tree'
+    KNN = '(KNN) K-Nearest Neighbors'
+    SVM = '(SVM) Support Vector Machines'
+    MLP = '(MLP) Multi-Layered Perceptron'
 
 # Base model parameter's spaces
-class BaseParams():
-    TREE = [
+BaseParams = {
+    BaseModels.TREE:[
         {
             'criterion': 'gini',
             'max_depth': 4
@@ -53,8 +52,8 @@ class BaseParams():
             'criterion': 'entropy',
             'max_depth': 12
         },
-    ]
-    KNN = [
+    ],
+    BaseModels.KNN:[
         {
             'n_neighbors': 3,
             'weights': 'uniform',
@@ -95,8 +94,8 @@ class BaseParams():
             'weights': 'distance',
             'metric': 'manhattan'
         },
-    ]
-    SVM = [
+    ],
+    BaseModels.SVM:[
         {
             'kernel': 'rbf',
             'gamma': 'auto',
@@ -115,8 +114,8 @@ class BaseParams():
             'kernel': 'linear',
             'C': 10
         }
-    ]
-    MLP = [
+    ],
+    BaseModels.MLP:[
         {
             'hidden_layer_sizes': (100,),
             'max_iter': 2000,
@@ -261,7 +260,8 @@ class BaseParams():
             'alpha': 0.05,
             'learning_rate': 'adaptive'
         },
-    ]
+    ],
+}
 
 # Neural model types
 class NeuralModels(Enum):

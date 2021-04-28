@@ -27,7 +27,7 @@ class BaseModel():
         self.classifier = pickle.load(open(path, 'rb'))
 
     # Constructor
-    def __init__(self, model=BaseModels.MLP, params=BaseParams.MLP[0]):
+    def __init__(self, model=BaseModels.MLP, params=BaseParams[BaseModels.MLP][0]):
 
         # Generic configuration
         self.model = model

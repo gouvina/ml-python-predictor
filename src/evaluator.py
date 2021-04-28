@@ -37,9 +37,61 @@ def evaluate(dataset, model_class, model_type, model_params):
 
     # 5. Show results
     print('(EVALUATOR) Results:')
-    ui.print_model(model)
-    ui.print_evaluation(report, matrix)   
+    ui.print_model(model_class, model)
+    ui.print_evaluation(report, matrix)
 
+# Search parameters' space and evaluate best for a predictor
+def search(dataset, model_class):
+
+    # 0. Aux structures
+    models = {}
+
+    # 1. Read dataset
+    print('(EVALUATOR) Reading dataset...')  
+    X,Y,X_test,Y_test = reader.read_split_dataset(DATA_FOLDER + dataset)
+
+    # 2. Iterate over model types
+    if model_class == Models.BASE:
+        for model_type in BaseModels:
+
+            # 2.1. Empty list for every parameter configuration from same model type
+            models[model_type] = []
+            print()
+
+            # 2.2. Iterate over model params
+            for model_params in BaseParams[model_type]:
+
+                print('(EVALUATOR) Evaluating model: Type - ' + str(model_type.value) + ', Params - ' + str(BaseParams[model_type].index(model_params)))
+
+                # 2.2.1. Create model
+                model = BaseModel(model=model_type, params=model_params)
+
+                # 2.2.2. Train model
+                model.train(X,Y)
+
+                # 2.2.3. Evaluate predictor
+                report, _ = model.evaluate(X_test, Y_test)
+
+                # 2.2.4. Load predictor's evaluation in evaluation list
+                models[model_type].append((model, report['f1_score'], report))
+
+            # 2.3. Sort list based on f1_score
+            models[model_type] = sorted(models[model_type], key=lambda x: x[1], reverse=True)
+
+    # 3. Show best results for each model type
+    if model_class == Models.BASE:
+        for model_type in BaseModels:
+
+            # 3.1. Pick best model
+            best_model, _, best_report = models[model_type][0]
+            
+            # 3.2. Show results
+            print()
+            print('(EVALUATOR) Results:')
+            ui.print_model(Models.BASE, best_model)
+            ui.print_evaluation(best_report, None)
+            
+        
 if __name__ == "__main__":
 
     # Preset arguments values
@@ -47,7 +99,7 @@ if __name__ == "__main__":
     dataset = IRIS_DATASET
     model_class = Models.BASE
     model_type = BaseModels.MLP
-    model_params = BaseParams.MLP[0]
+    model_params = BaseParams[model_type][0]
 
     # Get length of provided arguments
     args = len(sys.argv)
@@ -66,4 +118,6 @@ if __name__ == "__main__":
 
     if exploration == 0:
         evaluate(dataset, model_class, model_type, model_params)
+    elif exploration == 1:
+        search(dataset, model_class)
 

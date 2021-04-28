@@ -47,7 +47,7 @@ if __name__ == "__main__":
     dataset = IRIS_DATASET
     model_class = Models.BASE
     model_type = BaseModels.MLP
-    model_params = BaseParams.MLP[0]
+    model_params = BaseParams[model_type][0]
     model_file = IRIS_PREDICTOR
 
     # Get length of provided arguments

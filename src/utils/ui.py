@@ -1,26 +1,26 @@
 # DEPENDENCIES (Libraries)
 # ----------------------------------------------------------------------------------------------------
-from utils.const import BaseModels, BaseParams
+from utils.const import Models, BaseModels, BaseParams
 
 # AUX METHODS
 # ----------------------------------------------------------------------------------------------------
 
 # Print predictor's model data
-def print_model(model):
+def print_model(model_class, model):
+
     params_code = 0
+    if model_class == Models.BASE:
+        params_code = BaseParams[model.model].index(model.params)
+    
     print("Model:")
     if model.model == BaseModels.TREE:
         print("-> Type - (BT) Binary Tree")
-        params_code = BaseParams.TREE.index(model.params)
     if model.model == BaseModels.KNN:
         print("-> Type - (KNN) K-Nearest Neighbors")
-        params_code = BaseParams.KNN.index(model.params)
     if model.model == BaseModels.SVM:
         print("-> Type - (SVM) Support Vector Machines")
-        params_code = BaseParams.SVM.index(model.params)
     if model.model == BaseModels.MLP:
         print("-> Type - (MLP) Multi-Layered Perceptron")
-        params_code = BaseParams.MLP.index(model.params)
     print("Params:")
     print("-> Params code: " + str(params_code))
     for param in model.params:
@@ -33,5 +33,6 @@ def print_evaluation(report, matrix):
     print("-> Precision - ", "{0:.2f}".format(report['precision']))
     print("-> Recall - ", "{0:.2f}".format(report['recall']))
     print("-> Accuracy - ", "{0:.2f}".format(report['accuracy']))
-    print("Confusion Matrix:")
-    print(matrix)
+    if matrix != None:
+        print("Confusion Matrix:")
+        print(matrix)
