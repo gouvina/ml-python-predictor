@@ -1,6 +1,5 @@
 # DEPENDENCIES (Libraries)
 # ----------------------------------------------------------------------------------------------------
-import os
 import sys
 import time
 
@@ -9,8 +8,9 @@ import time
 import utils.parser as parser
 import processing.reader as reader
 from model.base import BaseModel
-from utils.const import DATA_FOLDER, MODEL_FOLDER, IRIS_DATASET, IRIS_PREDICTOR, Models, BaseModels, NeuralModels, BaseParams
-
+from constants.routes import DATA_FOLDER, MODEL_FOLDER, IRIS_DATASET, IRIS_PREDICTOR
+from constants.enums import Models, BaseModels, NeuralModels
+from constants.params import BaseParams
 
 # MAIN FUNCTIONS
 # ----------------------------------------------------------------------------------------------------

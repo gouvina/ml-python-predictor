@@ -1,29 +1,9 @@
 # DEPENDENCIES (Libraries)
 # ----------------------------------------------------------------------------------------------------
-from enum import Enum
+from constants.enums import BaseModels
 
-# CONSTANTS
+# PARAMETERS
 # ----------------------------------------------------------------------------------------------------
-
-# Folder paths
-MODEL_FOLDER = 'models/'
-DATA_FOLDER = 'data/'
-
-# File paths
-IRIS_DATASET = 'iris.csv'
-IRIS_PREDICTOR = 'iris.pkl'
-
-# Model classes
-class Models(Enum):
-    BASE = 1
-    NEURAL = 2
-
-# Base model types
-class BaseModels(Enum):
-    TREE = '(BT) Binary Tree'
-    KNN = '(KNN) K-Nearest Neighbors'
-    SVM = '(SVM) Support Vector Machines'
-    MLP = '(MLP) Multi-Layered Perceptron'
 
 # Base model parameter's spaces
 BaseParams = {
@@ -262,7 +242,3 @@ BaseParams = {
         },
     ],
 }
-
-# Neural model types
-class NeuralModels(Enum):
-    MLP = 1

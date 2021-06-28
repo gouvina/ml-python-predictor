@@ -1,6 +1,7 @@
 # DEPENDENCIES (Libraries)
 # ----------------------------------------------------------------------------------------------------
-from utils.const import Models, BaseModels, BaseParams
+from constants.enums import Models, BaseModels, NeuralModels
+from constants.params import BaseParams
 
 # AUX METHODS
 # ----------------------------------------------------------------------------------------------------

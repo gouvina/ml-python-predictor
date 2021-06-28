@@ -12,7 +12,8 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 
 # DEPENDENCIES (Local)
 # ----------------------------------------------------------------------------------------------------
-from utils.const import BaseModels, BaseParams
+from constants.enums import BaseModels
+from constants.params import BaseParams
 
 # MAIN CLASS
 # ----------------------------------------------------------------------------------------------------

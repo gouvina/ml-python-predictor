@@ -1,10 +1,14 @@
-# DEPENDENCIES (Libraries)
+# DEPENDENCIES (Local)
 # ----------------------------------------------------------------------------------------------------
-from utils.const import Models, BaseModels, NeuralModels, BaseParams
+from constants.enums import Models, BaseModels, NeuralModels
+from constants.params import BaseParams
 
 # AUX METHODS
 # ----------------------------------------------------------------------------------------------------
 
+# Parse model class into enum with types:
+# -> Base = Models based on common ML methods
+# -> Neural = Models based on neural networks
 def parse_model_class(model_class):
     
     model = None
@@ -19,6 +23,12 @@ def parse_model_class(model_class):
 
     return model, model_type
 
+# Parse model type depending of model class, into enum with types:
+# Base:
+# -> Tree = Binary decision tree
+# -> KNN = K Nearest Neighbors
+# -> SVM = Support Vector Machines
+# -> MLP = Multi Layered Perceptron
 def parse_model_type(model_class, model_type):
 
     model = None
@@ -40,6 +50,7 @@ def parse_model_type(model_class, model_type):
 
     return model, model_params
 
+# Retrieve model training params depending on class and type
 def parse_model_params(model_class, model_type, model_params):
 
     params = None

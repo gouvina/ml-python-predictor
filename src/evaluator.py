@@ -1,7 +1,6 @@
 # DEPENDENCIES (Libraries)
 # ----------------------------------------------------------------------------------------------------
 import sys
-import time
 
 # DEPENDENCIES (Local)
 # ----------------------------------------------------------------------------------------------------
@@ -9,7 +8,9 @@ import utils.ui as ui
 import utils.parser as parser
 import processing.reader as reader
 from model.base import BaseModel
-from utils.const import DATA_FOLDER, MODEL_FOLDER, IRIS_DATASET, IRIS_PREDICTOR, Models, BaseModels, NeuralModels, BaseParams
+from constants.routes import DATA_FOLDER, IRIS_DATASET
+from constants.enums import Models, BaseModels, NeuralModels
+from constants.params import BaseParams
 
 # MAIN FUNCTIONS
 # ----------------------------------------------------------------------------------------------------
@@ -91,8 +92,7 @@ def search(dataset, model_class):
             print('(EVALUATOR) Results:')
             ui.print_model(Models.BASE, best_model)
             ui.print_evaluation(best_report)
-            
-        
+                
 if __name__ == "__main__":
 
     # Preset arguments values

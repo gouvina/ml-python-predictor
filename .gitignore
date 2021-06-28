@@ -129,5 +129,5 @@ dmypy.json
 .pyre/
 
 # Virtual ENV
-./venv
-./venv/
+./env
+./env/
