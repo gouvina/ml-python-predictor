@@ -14,12 +14,12 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 
 # DEPENDENCIES (Local)
 # ----------------------------------------------------------------------------------------------------
-from constants.enums import BaseModels
-from constants.params import BaseParams
+from constants.enums import ClassificationModels
+from constants.params import ClassificationParams
 
 # MAIN CLASS
 # ----------------------------------------------------------------------------------------------------
-class BaseModel():
+class ClassificationModel():
 
     # Aux Function - Save model in pickle file
     def save(self, path):
@@ -30,7 +30,7 @@ class BaseModel():
         self.classifier = pickle.load(open(path, 'rb'))
 
     # Constructor
-    def __init__(self, model=BaseModels.MLP, params=BaseParams[BaseModels.MLP][0]):
+    def __init__(self, model=ClassificationModels.MLP, params=ClassificationParams[ClassificationModels.MLP][0]):
 
         # Generic configuration
         self.model = model
@@ -43,17 +43,17 @@ class BaseModel():
     def train(self, X, Y):
 
         # Create model's instance based on params
-        if self.model == BaseModels.TREE:
+        if self.model == ClassificationModels.TREE:
             self.predictor = DecisionTreeClassifier(**self.params)
-        elif self.model == BaseModels.GNB:
+        elif self.model == ClassificationModels.GNB:
             self.predictor = GaussianNB(**self.params)
-        elif self.model == BaseModels.KNN:
+        elif self.model == ClassificationModels.KNN:
             self.predictor = KNeighborsClassifier(**self.params)
-        elif self.model == BaseModels.SVM:
+        elif self.model == ClassificationModels.SVM:
             self.predictor = SVC(**self.params)
-        elif self.model == BaseModels.LOR:
+        elif self.model == ClassificationModels.LOR:
             self.predictor = LogisticRegression(**self.params)
-        elif self.model == BaseModels.MLP:
+        elif self.model == ClassificationModels.MLP:
             self.predictor = MLPClassifier(**self.params)
 
         # Train using dataset X and tags Y

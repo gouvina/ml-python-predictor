@@ -7,16 +7,24 @@ from enum import Enum
 
 # Model classes
 class Models(Enum):
-    BASE = 1
-    NEURAL = 2
+    CLASSIFICATION = 1
+    REGRESSION = 2
+    NEURAL = 3
 
-# Base model types
-class BaseModels(Enum):
+# Classification model types
+class ClassificationModels(Enum):
     TREE = '(DBT) Decision Binary Tree'
     GNB = '(GNB) Gaussian Naive Bayes'
     KNN = '(KNN) K-Nearest Neighbors'
     SVM = '(SVM) Support Vector Machines'
     LOR = '(LoR) Logistic Regression'
+    MLP = '(MLP) Multi-Layered Perceptron'
+
+# Regression model types
+class RegressionModels(Enum):
+    KNN = '(KNN) K-Nearest Neighbors'
+    SVM = '(SVM) Support Vector Machines'
+    LIR = '(LiR) Linear Regression'
     MLP = '(MLP) Multi-Layered Perceptron'
 
 # Neural model types

@@ -1,13 +1,13 @@
 # DEPENDENCIES (Libraries)
 # ----------------------------------------------------------------------------------------------------
-from constants.enums import BaseModels
+from constants.enums import ClassificationModels, RegressionModels
 
 # PARAMETERS
 # ----------------------------------------------------------------------------------------------------
 
-# Base model parameter's spaces
-BaseParams = {
-    BaseModels.TREE:[
+# Classification model parameter's spaces
+ClassificationParams = {
+    ClassificationModels.TREE:[
         {
             'criterion': 'gini',
             'max_depth': 4
@@ -33,7 +33,7 @@ BaseParams = {
             'max_depth': 12
         },
     ],
-    BaseModels.GNB:[
+    ClassificationModels.GNB:[
         {
             'var_smoothing': 0.00000001,
         },
@@ -47,7 +47,7 @@ BaseParams = {
             'var_smoothing': 0.1,
         },
     ],
-    BaseModels.KNN:[
+    ClassificationModels.KNN:[
         {
             'n_neighbors': 3,
             'weights': 'uniform',
@@ -89,7 +89,7 @@ BaseParams = {
             'metric': 'manhattan'
         },
     ],
-    BaseModels.SVM:[
+    ClassificationModels.SVM:[
         {
             'kernel': 'rbf',
             'gamma': 'auto',
@@ -109,7 +109,7 @@ BaseParams = {
             'C': 10
         }
     ],
-    BaseModels.LOR:[
+    ClassificationModels.LOR:[
         {
             'solver': 'lbfgs',
             'penalty': 'l2',
@@ -146,7 +146,307 @@ BaseParams = {
             'max_iter': 200,
         },
     ],
-    BaseModels.MLP:[
+    ClassificationModels.MLP:[
+        {
+            'hidden_layer_sizes': (100,),
+            'max_iter': 2000,
+            'activation': 'relu',
+            'solver': 'sgd',
+            'alpha': 0.0001,
+            'learning_rate': 'constant'
+        },
+        {
+            'hidden_layer_sizes': (100,100),
+            'max_iter': 2000,
+            'activation': 'relu',
+            'solver': 'sgd',
+            'alpha': 0.0001,
+            'learning_rate': 'constant'
+        },
+        {
+            'hidden_layer_sizes': (100,100,100),
+            'max_iter': 2000,
+            'activation': 'relu',
+            'solver': 'sgd',
+            'alpha': 0.0001,
+            'learning_rate': 'constant'
+        },
+        {
+            'hidden_layer_sizes': (100,),
+            'max_iter': 2000,
+            'activation': 'logistic',
+            'solver': 'sgd',
+            'alpha': 0.0001,
+            'learning_rate': 'constant'
+        },
+        {
+            'hidden_layer_sizes': (100,100),
+            'max_iter': 2000,
+            'activation': 'logistic',
+            'solver': 'sgd',
+            'alpha': 0.0001,
+            'learning_rate': 'constant'
+        },
+        {
+            'hidden_layer_sizes': (100,100,100),
+            'max_iter': 2000,
+            'activation': 'logistic',
+            'solver': 'sgd',
+            'alpha': 0.0001,
+            'learning_rate': 'constant'
+        },
+        {
+            'hidden_layer_sizes': (100,),
+            'max_iter': 2000,
+            'activation': 'logistic',
+            'solver': 'sgd',
+            'alpha': 0.05,
+            'learning_rate': 'constant'
+        },
+        {
+            'hidden_layer_sizes': (100,100),
+            'max_iter': 2000,
+            'activation': 'logistic',
+            'solver': 'sgd',
+            'alpha': 0.05,
+            'learning_rate': 'constant'
+        },
+        {
+            'hidden_layer_sizes': (100,100,100),
+            'max_iter': 2000,
+            'activation': 'logistic',
+            'solver': 'sgd',
+            'alpha': 0.05,
+            'learning_rate': 'constant'
+        },
+        {
+            'hidden_layer_sizes': (100,),
+            'max_iter': 2000,
+            'activation': 'relu',
+            'solver': 'adam',
+            'alpha': 0.05,
+            'learning_rate': 'constant'
+        },
+        {
+            'hidden_layer_sizes': (100,100),
+            'max_iter': 2000,
+            'activation': 'relu',
+            'solver': 'adam',
+            'alpha': 0.05,
+            'learning_rate': 'constant'
+        },
+        {
+            'hidden_layer_sizes': (100,100,100),
+            'max_iter': 2000,
+            'activation': 'relu',
+            'solver': 'adam',
+            'alpha': 0.05,
+            'learning_rate': 'constant'
+        },
+        {
+            'hidden_layer_sizes': (100,),
+            'max_iter': 2000,
+            'activation': 'relu',
+            'solver': 'adam',
+            'alpha': 0.05,
+            'learning_rate': 'adaptive'
+        },
+        {
+            'hidden_layer_sizes': (100,100),
+            'max_iter': 2000,
+            'activation': 'relu',
+            'solver': 'adam',
+            'alpha': 0.05,
+            'learning_rate': 'adaptive'
+        },
+        {
+            'hidden_layer_sizes': (100,100,100),
+            'max_iter': 2000,
+            'activation': 'relu',
+            'solver': 'adam',
+            'alpha': 0.05,
+            'learning_rate': 'adaptive'
+        },
+        {
+            'hidden_layer_sizes': (100,),
+            'max_iter': 2000,
+            'activation': 'logistic',
+            'solver': 'adam',
+            'alpha': 0.05,
+            'learning_rate': 'adaptive'
+        },
+        {
+            'hidden_layer_sizes': (100,100),
+            'max_iter': 2000,
+            'activation': 'logistic',
+            'solver': 'adam',
+            'alpha': 0.05,
+            'learning_rate': 'adaptive'
+        },
+        {
+            'hidden_layer_sizes': (100,100,100),
+            'max_iter': 2000,
+            'activation': 'logistic',
+            'solver': 'adam',
+            'alpha': 0.05,
+            'learning_rate': 'adaptive'
+        },
+    ],
+}
+
+# Regression model parameter's spaces
+RegressionParams = {
+    RegressionModels.KNN:[
+        {
+            'n_neighbors': 3,
+            'weights': 'uniform',
+            'metric': 'euclidean'
+        },
+        {
+            'n_neighbors': 5,
+            'weights': 'uniform',
+            'metric': 'euclidean'
+        },
+        {
+            'n_neighbors': 3,
+            'weights': 'distance',
+            'metric': 'euclidean'
+        },
+        {
+            'n_neighbors': 5,
+            'weights': 'distance',
+            'metric': 'euclidean'
+        },
+        {
+            'n_neighbors': 3,
+            'weights': 'uniform',
+            'metric': 'manhattan'
+        },
+        {
+            'n_neighbors': 5,
+            'weights': 'uniform',
+            'metric': 'manhattan'
+        },
+        {
+            'n_neighbors': 3,
+            'weights': 'distance',
+            'metric': 'manhattan'
+        },
+        {
+            'n_neighbors': 5,
+            'weights': 'distance',
+            'metric': 'manhattan'
+        },
+    ],
+    RegressionModels.SVM:[
+        {
+            'kernel': 'rbf',
+            'gamma': 'auto',
+            'tol': 1e-3,
+            'C': 1
+        },
+        {
+            'kernel': 'rbf',
+            'gamma': 'scale',
+            'tol': 1e-3,
+            'C': 1
+        },
+        {
+            'kernel': 'rbf',
+            'gamma': 'auto',
+            'tol': 1e-3,
+            'C': 10
+        },
+        {
+            'kernel': 'rbf',
+            'gamma': 'scale',
+            'tol': 1e-3,
+            'C': 10
+        },
+        {
+            'kernel': 'rbf',
+            'gamma': 'auto',
+            'tol': 1e-3,
+            'C': 0.1
+        },
+        {
+            'kernel': 'rbf',
+            'gamma': 'scale',
+            'tol': 1e-3,
+            'C': 0.1
+        },
+        {
+            'kernel': 'rbf',
+            'gamma': 'auto',
+            'tol': 1e-6,
+            'C': 1
+        },
+        {
+            'kernel': 'rbf',
+            'gamma': 'scale',
+            'tol': 1e-6,
+            'C': 1
+        },
+        {
+            'kernel': 'rbf',
+            'gamma': 'auto',
+            'tol': 1e-6,
+            'C': 10
+        },
+        {
+            'kernel': 'rbf',
+            'gamma': 'scale',
+            'tol': 1e-6,
+            'C': 10
+        },
+        {
+            'kernel': 'rbf',
+            'gamma': 'auto',
+            'tol': 1e-6,
+            'C': 0.1
+        },
+        {
+            'kernel': 'rbf',
+            'gamma': 'scale',
+            'tol': 1e-6,
+            'C': 0.1
+        },
+
+        {
+            'kernel': 'linear',
+            'tol': 1e-3,
+            'C': 1
+        },
+        {
+            'kernel': 'linear',
+            'tol': 1e-3,
+            'C': 10
+        },
+        {
+            'kernel': 'linear',
+            'tol': 1e-3,
+            'C': 0.1
+        },
+        {
+            'kernel': 'linear',
+            'tol': 1e-6,
+            'C': 1
+        },
+        {
+            'kernel': 'linear',
+            'tol': 1e-6,
+            'C': 10
+        },
+        {
+            'kernel': 'linear',
+            'tol': 1e-6,
+            'C': 0.1
+        },
+    ],
+    RegressionModels.LIR:[
+        {}
+    ],
+    RegressionModels.MLP:[
         {
             'hidden_layer_sizes': (100,),
             'max_iter': 2000,
