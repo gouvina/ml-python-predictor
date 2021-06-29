@@ -37,10 +37,14 @@ def parse_model_type(model_class, model_type):
     if model_class == Models.BASE:
         if model_type == 'tree':
             model = BaseModels.TREE
+        if model_type == 'gnb':
+            model = BaseModels.GNB
         if model_type == 'knn':
             model = BaseModels.KNN
         if model_type == 'svm':
             model = BaseModels.SVM
+        if model_type == 'lor':
+            model = BaseModels.LOR
         if model_type == 'mlp':
             model = BaseModels.MLP
         model_params = BaseParams[model][0]

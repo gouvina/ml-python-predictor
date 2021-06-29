@@ -6,7 +6,7 @@ Base Project for training and evaluating machine learning predictors based on di
 `python -m venv env` <br>
 
 2 - (Optional) Activate virtual environment: <br>
-`env/Scripts/activate.bat` (Windows)<br>
+`env/Scripts/activate.ps1` (Windows)<br>
 `./env/Scripts/activate` (Unix)<br>
 
 3 - Install requirements: <br>
@@ -42,8 +42,9 @@ Parameters:
 
  Parameters:
 1. `exploration`: an integer representing if evaluation should be done using the provided parameters or trying different combinations and choosing the best one
-    - Single evalution = 0
-    - Search exploration = 1
+    - Evaluate current model and params = 0
+    - Search best model and params = 1
+    - Search best params for model = 2
 2. `path`: path to a CSV file that contains the dataset.
 3. `class`: an integer representing the kind of model based on the strategy used
     - Base = 0

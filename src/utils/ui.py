@@ -16,10 +16,14 @@ def print_model(model_class, model):
     print("Model:")
     if model.model == BaseModels.TREE:
         print("-> Type - (BT) Binary Tree")
+    if model.model == BaseModels.GNB:
+        print("-> Type - (GNB) Gaussian Naive Bayes")
     if model.model == BaseModels.KNN:
         print("-> Type - (KNN) K-Nearest Neighbors")
     if model.model == BaseModels.SVM:
         print("-> Type - (SVM) Support Vector Machines")
+    if model.model == BaseModels.LOR:
+        print("-> Type - (LoR) Logistic Regression")
     if model.model == BaseModels.MLP:
         print("-> Type - (MLP) Multi-Layered Perceptron")
     print("Params:")

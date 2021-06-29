@@ -33,6 +33,20 @@ BaseParams = {
             'max_depth': 12
         },
     ],
+    BaseModels.GNB:[
+        {
+            'var_smoothing': 0.00000001,
+        },
+        {
+            'var_smoothing': 0.00001,
+        },
+        {
+            'var_smoothing': 0.001,
+        },
+        {
+            'var_smoothing': 0.1,
+        },
+    ],
     BaseModels.KNN:[
         {
             'n_neighbors': 3,
@@ -94,6 +108,43 @@ BaseParams = {
             'kernel': 'linear',
             'C': 10
         }
+    ],
+    BaseModels.LOR:[
+        {
+            'solver': 'lbfgs',
+            'penalty': 'l2',
+            'max_iter': 200,
+        },
+        {
+            'solver': 'newton-cg',
+            'penalty': 'l2',
+            'max_iter': 200,
+        },
+        {
+            'solver': 'sag',
+            'penalty': 'l2',
+            'max_iter': 200,
+        },
+        {
+            'solver': 'saga',
+            'penalty': 'l1',
+            'max_iter': 200,
+        },
+        {
+            'solver': 'saga',
+            'penalty': 'l2',
+            'max_iter': 200,
+        },
+        {
+            'solver': 'liblinear',
+            'penalty': 'l1',
+            'max_iter': 200,
+        },
+        {
+            'solver': 'liblinear',
+            'penalty': 'l2',
+            'max_iter': 200,
+        },
     ],
     BaseModels.MLP:[
         {

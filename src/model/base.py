@@ -4,9 +4,11 @@ import warnings
 warnings.simplefilter("ignore", UserWarning)
 import pickle
 import numpy as np
-from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import SVC
+from sklearn.linear_model import LogisticRegression
 from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 
@@ -43,10 +45,14 @@ class BaseModel():
         # Create model's instance based on params
         if self.model == BaseModels.TREE:
             self.predictor = DecisionTreeClassifier(**self.params)
+        elif self.model == BaseModels.GNB:
+            self.predictor = GaussianNB(**self.params)
         elif self.model == BaseModels.KNN:
             self.predictor = KNeighborsClassifier(**self.params)
         elif self.model == BaseModels.SVM:
             self.predictor = SVC(**self.params)
+        elif self.model == BaseModels.LOR:
+            self.predictor = LogisticRegression(**self.params)
         elif self.model == BaseModels.MLP:
             self.predictor = MLPClassifier(**self.params)
 

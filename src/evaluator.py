@@ -92,7 +92,47 @@ def search(dataset, model_class):
             print('(EVALUATOR) Results:')
             ui.print_model(Models.BASE, best_model)
             ui.print_evaluation(best_report)
-                
+
+# Search parameters' space and evaluate best for a predictor of specific type
+def search(dataset, model_class, model_type):
+
+    # 0. Aux structures
+    models = []
+
+    # 1. Read dataset
+    print('(EVALUATOR) Reading dataset...')  
+    X,Y,X_test,Y_test = reader.read_split_dataset(DATA_FOLDER + dataset)
+
+    # 2. Iterate over model types
+    if model_class == Models.BASE:
+
+        # 2.1. Iterate over model params
+        for model_params in BaseParams[model_type]:
+
+            print('(EVALUATOR) Evaluating model: Type - ' + str(model_type.value) + ', Params - ' + str(BaseParams[model_type].index(model_params)))
+
+            # 2.2.1. Create model
+            model = BaseModel(model=model_type, params=model_params)
+
+            # 2.2.2. Train model
+            model.train(X,Y)
+
+            # 2.2.3. Evaluate predictor
+            report, _ = model.evaluate(X_test, Y_test)
+
+            # 2.2.4. Load predictor's evaluation in evaluation list
+            models.append((model, report['f1_score'], report))
+
+        # 2.2. Sort list based on f1_score
+        models = sorted(models, key=lambda x: x[1], reverse=True)
+
+    # 3. Show best results for each model type
+    best_model, _, best_report = models[0]
+    print()
+    print('(EVALUATOR) Results:')
+    ui.print_model(model_class, best_model)
+    ui.print_evaluation(best_report)
+            
 if __name__ == "__main__":
 
     # Preset arguments values
@@ -121,4 +161,6 @@ if __name__ == "__main__":
         evaluate(dataset, model_class, model_type, model_params)
     elif exploration == 1:
         search(dataset, model_class)
+    elif exploration == 2:
+        search(dataset, model_class, model_type)
 
