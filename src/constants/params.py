@@ -1,6 +1,6 @@
 # DEPENDENCIES (Libraries)
 # ----------------------------------------------------------------------------------------------------
-from constants.enums import ClassificationModels, RegressionModels
+from constants.enums import ClassificationModels, RegressionModels, NeuralModels
 
 # PARAMETERS
 # ----------------------------------------------------------------------------------------------------
@@ -447,6 +447,156 @@ RegressionParams = {
         {}
     ],
     RegressionModels.MLP:[
+        {
+            'hidden_layer_sizes': (100,),
+            'max_iter': 2000,
+            'activation': 'relu',
+            'solver': 'sgd',
+            'alpha': 0.0001,
+            'learning_rate': 'constant'
+        },
+        {
+            'hidden_layer_sizes': (100,100),
+            'max_iter': 2000,
+            'activation': 'relu',
+            'solver': 'sgd',
+            'alpha': 0.0001,
+            'learning_rate': 'constant'
+        },
+        {
+            'hidden_layer_sizes': (100,100,100),
+            'max_iter': 2000,
+            'activation': 'relu',
+            'solver': 'sgd',
+            'alpha': 0.0001,
+            'learning_rate': 'constant'
+        },
+        {
+            'hidden_layer_sizes': (100,),
+            'max_iter': 2000,
+            'activation': 'logistic',
+            'solver': 'sgd',
+            'alpha': 0.0001,
+            'learning_rate': 'constant'
+        },
+        {
+            'hidden_layer_sizes': (100,100),
+            'max_iter': 2000,
+            'activation': 'logistic',
+            'solver': 'sgd',
+            'alpha': 0.0001,
+            'learning_rate': 'constant'
+        },
+        {
+            'hidden_layer_sizes': (100,100,100),
+            'max_iter': 2000,
+            'activation': 'logistic',
+            'solver': 'sgd',
+            'alpha': 0.0001,
+            'learning_rate': 'constant'
+        },
+        {
+            'hidden_layer_sizes': (100,),
+            'max_iter': 2000,
+            'activation': 'logistic',
+            'solver': 'sgd',
+            'alpha': 0.05,
+            'learning_rate': 'constant'
+        },
+        {
+            'hidden_layer_sizes': (100,100),
+            'max_iter': 2000,
+            'activation': 'logistic',
+            'solver': 'sgd',
+            'alpha': 0.05,
+            'learning_rate': 'constant'
+        },
+        {
+            'hidden_layer_sizes': (100,100,100),
+            'max_iter': 2000,
+            'activation': 'logistic',
+            'solver': 'sgd',
+            'alpha': 0.05,
+            'learning_rate': 'constant'
+        },
+        {
+            'hidden_layer_sizes': (100,),
+            'max_iter': 2000,
+            'activation': 'relu',
+            'solver': 'adam',
+            'alpha': 0.05,
+            'learning_rate': 'constant'
+        },
+        {
+            'hidden_layer_sizes': (100,100),
+            'max_iter': 2000,
+            'activation': 'relu',
+            'solver': 'adam',
+            'alpha': 0.05,
+            'learning_rate': 'constant'
+        },
+        {
+            'hidden_layer_sizes': (100,100,100),
+            'max_iter': 2000,
+            'activation': 'relu',
+            'solver': 'adam',
+            'alpha': 0.05,
+            'learning_rate': 'constant'
+        },
+        {
+            'hidden_layer_sizes': (100,),
+            'max_iter': 2000,
+            'activation': 'relu',
+            'solver': 'adam',
+            'alpha': 0.05,
+            'learning_rate': 'adaptive'
+        },
+        {
+            'hidden_layer_sizes': (100,100),
+            'max_iter': 2000,
+            'activation': 'relu',
+            'solver': 'adam',
+            'alpha': 0.05,
+            'learning_rate': 'adaptive'
+        },
+        {
+            'hidden_layer_sizes': (100,100,100),
+            'max_iter': 2000,
+            'activation': 'relu',
+            'solver': 'adam',
+            'alpha': 0.05,
+            'learning_rate': 'adaptive'
+        },
+        {
+            'hidden_layer_sizes': (100,),
+            'max_iter': 2000,
+            'activation': 'logistic',
+            'solver': 'adam',
+            'alpha': 0.05,
+            'learning_rate': 'adaptive'
+        },
+        {
+            'hidden_layer_sizes': (100,100),
+            'max_iter': 2000,
+            'activation': 'logistic',
+            'solver': 'adam',
+            'alpha': 0.05,
+            'learning_rate': 'adaptive'
+        },
+        {
+            'hidden_layer_sizes': (100,100,100),
+            'max_iter': 2000,
+            'activation': 'logistic',
+            'solver': 'adam',
+            'alpha': 0.05,
+            'learning_rate': 'adaptive'
+        },
+    ],
+}
+
+# Regression model parameter's spaces
+NeuralParams = {
+    NeuralModels.MLP:[
         {
             'hidden_layer_sizes': (100,),
             'max_iter': 2000,

@@ -7,6 +7,7 @@ from sklearn.neighbors import KNeighborsRegressor
 from sklearn.svm import SVR
 from sklearn.linear_model import LinearRegression
 from sklearn.neural_network import MLPRegressor
+from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import explained_variance_score, r2_score, max_error, mean_absolute_error, mean_squared_error, median_absolute_error
 
 # DEPENDENCIES (Local)
@@ -35,6 +36,7 @@ class RegressionModel():
 
         # Interfaces
         self.predictor = None
+        self.scaler = None
 
     # Train predictor for dataset X and tags Y
     def train(self, X, Y):
@@ -48,6 +50,8 @@ class RegressionModel():
             self.predictor = LinearRegression(**self.params)
         elif self.model == RegressionModels.MLP:
             self.predictor = MLPRegressor(**self.params)
+            self.scaler = StandardScaler()
+            X = self.scaler.fit_transform(X)
 
         # Train using dataset X and tags Y
         self.predictor.fit(X, Y)
@@ -59,10 +63,12 @@ class RegressionModel():
     # Evaluate predictor for testset X and tags Y 
     def evaluate(self, X, Y):
 
+        # Normalize values if scaler exists
+        if self.scaler is not None:
+            X = self.scaler.transform(X)
+
         # Get prediction to compare
         prediction = self.predict(X)
-
-        print(prediction)
         
         # Get metrics
         explained_variance = explained_variance_score(Y, prediction)

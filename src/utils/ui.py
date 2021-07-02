@@ -1,7 +1,7 @@
 # DEPENDENCIES (Libraries)
 # ----------------------------------------------------------------------------------------------------
 from constants.enums import Models, ClassificationModels, RegressionModels, NeuralModels
-from constants.params import ClassificationParams, RegressionParams
+from constants.params import ClassificationParams, RegressionParams, NeuralParams
 
 # AUX METHODS
 # ----------------------------------------------------------------------------------------------------
@@ -12,6 +12,10 @@ def print_model(model_class, model):
     params_code = 0
     if model_class == Models.CLASSIFICATION:
         params_code = ClassificationParams[model.model].index(model.params)
+    elif model_class == Models.REGRESSION:
+        params_code = RegressionParams[model.model].index(model.params)
+    elif model_class == Models.NEURAL:
+        params_code = NeuralParams[model.model].index(model.params)
     
     print("Model:")
     if model.model == ClassificationModels.TREE:
@@ -26,7 +30,7 @@ def print_model(model_class, model):
         print("-> Type - (LiR) Linear Regression")
     if model.model == ClassificationModels.LOR:
         print("-> Type - (LoR) Logistic Regression")
-    if model.model == ClassificationModels.MLP or model.model == RegressionModels.MLP:
+    if model.model == ClassificationModels.MLP or model.model == RegressionModels.MLP or model.model == NeuralModels.MLP:
         print("-> Type - (MLP) Multi-Layered Perceptron")
     print("Params:")
     print("-> Params code: " + str(params_code))
@@ -50,6 +54,7 @@ def print_evaluation(model_class, report):
         print("-> Mean Absolute Error - ", "{0:.2f}".format(report['errors']['mean_absolute_error']))
         print("-> Median Absolute Error - ", "{0:.2f}".format(report['errors']['median_absolute_error']))
         print("-> Max Error - ", "{0:.2f}".format(report['errors']['max_error']))
+    
 
 # Print predictor evaluation's confusion matrix
 def print_matrix(matrix):

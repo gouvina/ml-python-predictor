@@ -1,7 +1,7 @@
 # DEPENDENCIES (Local)
 # ----------------------------------------------------------------------------------------------------
 from constants.enums import Models, ClassificationModels, RegressionModels, NeuralModels
-from constants.params import ClassificationParams, RegressionParams
+from constants.params import ClassificationParams, RegressionParams, NeuralParams
 
 # AUX METHODS
 # ----------------------------------------------------------------------------------------------------
@@ -27,10 +27,19 @@ def parse_model_class(model_class):
     return model, model_type
 
 # Parse model type depending of model class, into enum with types:
-# Base:
+# Classification:
 # -> Tree = Binary decision tree
+# -> GNB = Gaussian Naive Bayes
 # -> KNN = K Nearest Neighbors
 # -> SVM = Support Vector Machines
+# -> LoR = Logistic Regression
+# -> MLP = Multi Layered Perceptron
+# Regression:
+# -> KNN = K Nearest Neighbors
+# -> SVM = Support Vector Machines
+# -> LiR = Linear Regression
+# -> MLP = Multi Layered Perceptron
+# Neural:
 # -> MLP = Multi Layered Perceptron
 def parse_model_type(model_class, model_type):
 
@@ -76,5 +85,7 @@ def parse_model_params(model_class, model_type, model_params):
         params = ClassificationParams[model_type][model_params]
     elif model_class == Models.REGRESSION:
         params = RegressionParams[model_type][model_params]
+    elif model_class == Models.NEURAL:
+        params = NeuralParams[model_type][model_params]
         
     return params

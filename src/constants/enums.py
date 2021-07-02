@@ -29,4 +29,4 @@ class RegressionModels(Enum):
 
 # Neural model types
 class NeuralModels(Enum):
-    MLP = 1
+    MLP = '(MLP) Multi-Layered Perceptron'
